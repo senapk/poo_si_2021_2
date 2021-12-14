@@ -1,11 +1,12 @@
 #include <iostream>
+#include <stdexcept>
 
 //throw para disparar uma excessão
 //try cache para pegar a excessão
 
 void funcao1() {
     std::cout << "tal coisa\n";
-    throw std::value_error("erro");
+    throw std::invalid_argument("erro");
     std::cout << "fiz outra coisa";
 }
 
