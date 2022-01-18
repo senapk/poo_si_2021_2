@@ -7,11 +7,10 @@
 #include <map>
 
 namespace aux {
-    auto fn_id = [](auto x) { return x; };
     auto fn_ptr = [](auto x) { return *x; };
-    auto fn_keys = [](auto x) { return x.first; };
-    auto fn_values = [](auto x) { return x.second; };
-    auto fn_values_ptr = [](auto x) { return *x.second; };
+    auto map_keys = [](auto x) { return x.first; };
+    auto map_values = [](auto x) { return x.second; };
+    auto map_values_ptr = [](auto x) { return *x.second; };
 
     std::string join(const auto& container, const std::string& delimiter, auto fn) {
         if(container.size() == 0)
@@ -27,7 +26,7 @@ namespace aux {
     }
 
     auto map(const auto& container, auto fn) {
-        using output_type = decltype(fn(container.front()));
+        using output_type = decltype(fn(*container.begin()));
         std::vector<output_type> result;
         for (const auto& item : container)
             result.push_back(fn(item));

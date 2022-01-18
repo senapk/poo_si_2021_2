@@ -37,10 +37,7 @@ public:
     }
 
     std::vector<Contact> getStarred() {
-        std::vector<Contact> result;
-        for (auto& it : starred)
-            result.push_back(*it.second);
-        return result;
+        return aux::map(starred, aux::map_values_ptr);
     }
 
     void star(std::string name, bool value) {
@@ -69,8 +66,6 @@ public:
 };
 
 std::ostream& operator<<(std::ostream& os, const Agenda& agenda) {
-    for (auto& [key, contact] : agenda.contacts)
-        os << contact << '\n';
-    return os;
+    return os << aux::join(agenda.contacts, "\n", aux::map_values);
 }
 
